@@ -1,0 +1,21 @@
+#pform{
+   height: 100vh;
+   display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#form{
+   border: 1px solid red;
+   width: 50%;
+}
+#form p{
+    width: 100%;
+    
+}
+#form p label{
+    width: 30%;
+    display: inline-block;
+}
+#form p input{
+    width: 68%;
+}

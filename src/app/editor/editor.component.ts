@@ -10,7 +10,7 @@ import { Card } from 'src/model/card.model';
 })
 export class EditorComponent {
   articleForm;
-   smalltag="";
+  smalltag = "";
   cardId = 1;
   card: Card = {
     cardId: 0,
@@ -47,24 +47,24 @@ export class EditorComponent {
     this.card.title = this.articleForm.value.title ?? "";
     this.card.description = this.articleForm.value.description ?? "";
     this.card.date = new Date().toISOString();
-    
+
     this.cardId++;
   }
 
   enter(event: any) {
     // console.log(event);
-    
-    if (event.key === "Enter" && this.smalltag.trim()!="") {
-     
-        this.card.tags.push(this.smalltag.trim());
-     this.articleForm.get('tags')?.reset();
-    //  console.log("hello");
-     
+
+    if (event.key === "Enter" && this.smalltag.trim() != "") {
+
+      this.card.tags.push(this.smalltag.trim());
+      this.articleForm.get('tags')?.reset();
+      //  console.log("hello");
+
     }
-if(event.key === "Enter" &&this.smalltag?.trim()==""){
-  this.articleForm.get('tags')?.reset();
-}
-console.log(this.card.tags);
+    if (event.key === "Enter" && this.smalltag?.trim() == "") {
+      this.articleForm.get('tags')?.reset();
+    }
+    console.log(this.card.tags);
 
 
   }

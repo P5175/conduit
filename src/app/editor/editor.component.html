@@ -1,6 +1,6 @@
-<div>
-    <form [formGroup]="articleForm" (ngsubmit)="onSubmit()" >
-        <p>
+<div id="pform" class="pform">
+    <form [formGroup]="articleForm" (ngsubmit)="onSubmit()" id="form" class="form">
+        <p id="ptitle" class="ptitle">
             <label for="title">title</label>
             <input type="text" id="title" name="title" formControlName="title">
         </p>
@@ -8,15 +8,15 @@
             <div >title is required</div>
         </div>
 
-        <p>
+        <p id="pdescription" class="pdescription">
             <label for="des">description</label>
-            <input type="text" id="des" name="des" formControlName="description">
+            <input type="text" id="description" name="description" formControlName="description">
         </p>
         <div *ngIf="! articleForm.controls.description.valid && ( articleForm.controls.description.dirty || articleForm.controls.description.touched)">
             <div >description is required</div>
         </div>
 
-        <p>
+        <p id="ptags" class="ptags">
             <label for="tags">tags</label>
             <input type="text" id="tags" name="tags" formControlName="tags" (keydown)="enter($event)" [(ngModel)]="smalltag">
         </p>
