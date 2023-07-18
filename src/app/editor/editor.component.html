@@ -1,24 +1,28 @@
 <div>
-    <form formgroup="articleForm" (ngsubmit)="onSubmit()" >
+    <form [formGroup]="articleForm" (ngsubmit)="onSubmit()" >
         <p>
             <label for="title">title</label>
             <input type="text" id="title" name="title" formControlName="title">
         </p>
-        <div *ngIf="!this.articleForm.title?.valid && (this.articleForm.title?.dirty ||this.articleForm.title?.touched)">
-            <div [hidden]="!this.articleForm.title.errors.required">title is required</div>
+        <div *ngIf="! articleForm.controls.title?.valid && ( articleForm.controls.title?.touched)">
+            <div >title is required</div>
         </div>
 
         <p>
             <label for="des">description</label>
             <input type="text" id="des" name="des" formControlName="description">
         </p>
-        <div *ngIf="!this.articleForm.description.valid && (this.articleForm.description.dirty ||this.articleForm.description.touched)">
-            <div [hidden]="!this.articleForm.description.errors.required">description is required</div>
+        <div *ngIf="! articleForm.controls.description.valid && ( articleForm.controls.description.dirty || articleForm.controls.description.touched)">
+            <div >description is required</div>
         </div>
 
         <p>
             <label for="tags">tags</label>
-            <input type="text" id="tags" name="tags" formControlName="description">
+            <input type="text" id="tags" name="tags" formControlName="tags" (keydown)="enter($event)" [(ngModel)]="smalltag">
+        </p>
+    
+        <p>
+            <button type="submit" [disabled]="!articleForm.valid">submit</button>
         </p>
     </form>
 </div>

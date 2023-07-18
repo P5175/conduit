@@ -10,7 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { EditorComponent } from './editor/editor.component';
 import { SettingComponent } from './setting/setting.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
