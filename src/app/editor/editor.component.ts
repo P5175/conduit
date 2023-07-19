@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { Card } from 'src/model/card.model';
@@ -9,6 +9,7 @@ import { Card } from 'src/model/card.model';
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent {
+  @ViewChild('tagContainer') tagContainer!:ElementRef;
   articleForm;
   smalltag = "";
   cardId = 1;
@@ -25,22 +26,18 @@ export class EditorComponent {
     this.articleForm = this.formbuilder.group({
       title: ["", [Validators.required]],
       description: ["", [Validators.required]],
-      tags: ["", Validators.required]
+      tags: [""]
     })
   };
 
+addtag(){
+  for(let i=0;i<this.card.tags.length;i++){
+const tag=document.createElement('span').innerText=this.card.tags[i];
+this.tagContainer.nativeElement.appendChild(tag);
+  }
+}
 
-
-  //   get title() {
-  //     return this.articleForm.get('title');
-  //   }
-  //   get description() {
-  //     return this.articleForm.get('description');
-  //   }
-  // get tags():FormArray{
-  //   return this.articleForm.get('tags') as FormArray;
-  // }
-
+  
   onSubmit() {
     this.card.cardId = this.cardId;
     this.card.authorId = Number(localStorage.getItem('userid'));
@@ -58,7 +55,7 @@ export class EditorComponent {
 
       this.card.tags.push(this.smalltag.trim());
       this.articleForm.get('tags')?.reset();
-      //  console.log("hello");
+    this.addtag();
 
     }
     if (event.key === "Enter" && this.smalltag?.trim() == "") {

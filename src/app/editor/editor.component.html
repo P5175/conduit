@@ -1,28 +1,33 @@
 <div id="pform" class="pform">
+    <div *ngIf="! articleForm.controls.title?.valid && ( articleForm.controls.title?.touched)" id="error">
+        <div >title is required</div>
+    </div>
+    <div *ngIf="! articleForm.controls.description.valid && ( articleForm.controls.description.dirty || articleForm.controls.description.touched)" id="error">
+        <div >description is required</div>
+    </div>
     <form [formGroup]="articleForm" (ngsubmit)="onSubmit()" id="form" class="form">
         <p id="ptitle" class="ptitle">
             <label for="title">title</label>
             <input type="text" id="title" name="title" formControlName="title">
         </p>
-        <div *ngIf="! articleForm.controls.title?.valid && ( articleForm.controls.title?.touched)">
-            <div >title is required</div>
-        </div>
+        
 
         <p id="pdescription" class="pdescription">
             <label for="des">description</label>
             <input type="text" id="description" name="description" formControlName="description">
         </p>
-        <div *ngIf="! articleForm.controls.description.valid && ( articleForm.controls.description.dirty || articleForm.controls.description.touched)">
-            <div >description is required</div>
-        </div>
+        
 
         <p id="ptags" class="ptags">
             <label for="tags">tags</label>
             <input type="text" id="tags" name="tags" formControlName="tags" (keydown)="enter($event)" [(ngModel)]="smalltag">
         </p>
-    
-        <p>
+        <div *ngIf="card.tags.length>0" #tagContainer></div>
+        <p id="button" class="button">
             <button type="submit" [disabled]="!articleForm.valid">submit</button>
         </p>
+      
+              
+        
     </form>
 </div>
