@@ -1,4 +1,4 @@
-#pform{
+/* #pform{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,8 +19,10 @@
     display: flex;
 
 
- 
 }
+.ptags div{
+     width: 100%;
+    }
 #form div label{
     width: 30%;
    margin-right: 5px;
@@ -69,4 +71,79 @@ margin-bottom: 10px;
         text-align: justify;
     }
    
-  }   
+  }    */
+
+  #pform{
+        display: flex;
+     flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+    }
+    
+    #form{
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+       
+        
+    }
+    
+    #form div{
+        display: flex;
+    
+    
+     
+    }
+    .ptags div{
+        width: 100%;
+    }
+    #form div label{
+        width: 30%;
+       margin-right: 5px;
+        text-align: right;
+    }
+    #form div input{
+      width: 100%;
+      border:1px solid black;
+      border-radius: 2px;
+    }
+    #button{
+      
+        display: flex;
+      justify-content: flex-end;
+    }
+    
+    #divtag{
+    display: flex;
+    flex-direction: column;
+    
+    margin-bottom: 10px;
+    }
+    
+    #divtag span{
+       
+        display:flex;
+        background-color: aqua;
+        margin-right: 5px;
+        padding: 3px 8px;
+        border-radius: 2px;
+        background-color: rgb(194, 230, 230);
+    }
+    
+    
+    
+    
+    @media only screen and (max-width: 936px) {
+        #form div{
+            display: flex;
+        flex-direction: column;
+          
+         
+        }
+        #form div label{
+            text-align: justify;
+        }
+       
+      }
