@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { Card } from 'src/model/card.model';
@@ -6,10 +6,11 @@ import { Card } from 'src/model/card.model';
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.css']
+  styleUrls: ['./editor.component.css'],
+  encapsulation:ViewEncapsulation.None
 })
-export class EditorComponent {
-  @ViewChild('tagContainer') tagContainer!:ElementRef;
+export class EditorComponent  {
+  @ViewChild('tagContainer',{static:true}) tagContainer!:ElementRef<HTMLDivElement>;
   articleForm;
   smalltag = "";
   cardId = 1;
@@ -30,12 +31,17 @@ export class EditorComponent {
     })
   };
 
-addtag(){
-  for(let i=0;i<this.card.tags.length;i++){
-const tag=document.createElement('span').innerText=this.card.tags[i];
+addtag(temp:string){
+//  console.log(this.tagContainer.nativeElement);
+//  console.log(temp);
+ 
+const tag=document.createElement('span');
+
+
+tag.innerText=temp;
 this.tagContainer.nativeElement.appendChild(tag);
   }
-}
+
 
   
   onSubmit() {
@@ -50,12 +56,13 @@ this.tagContainer.nativeElement.appendChild(tag);
 
   enter(event: any) {
     // console.log(event);
-
+// event.preventdefault();
     if (event.key === "Enter" && this.smalltag.trim() != "") {
 
       this.card.tags.push(this.smalltag.trim());
+      this.addtag(this.smalltag?.trim());
       this.articleForm.get('tags')?.reset();
-    this.addtag();
+    
 
     }
     if (event.key === "Enter" && this.smalltag?.trim() == "") {

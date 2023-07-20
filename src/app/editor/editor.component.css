@@ -15,18 +15,18 @@
     
 }
 
-#form p{
+#form div{
     display: flex;
 
 
  
 }
-#form p label{
+#form div label{
     width: 30%;
    margin-right: 5px;
     text-align: right;
 }
-#form p input{
+#form div input{
   width: 100%;
   border:1px solid black;
   border-radius: 2px;
@@ -36,6 +36,26 @@
     display: flex;
   justify-content: flex-end;
 }
+
+#divtag{
+display: flex;
+flex-direction: column;
+
+margin-bottom: 10px;
+}
+
+#divtag span{
+   
+    display:flex;
+    
+    background-color: aqua;
+    margin-right: 5px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background-color: rgb(194, 230, 230);
+}
+
+
 
 
 @media only screen and (max-width: 936px) {
