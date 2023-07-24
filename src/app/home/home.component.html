@@ -1,16 +1,38 @@
-
 <hr>
-<div>
-    <div>
-        <button>your feed</button>
-        <button>global feed</button>
+<div id="body">
+    <div id="home">
+        <div>
+            <button id="yourfeed" (click)="toggle('yourfeed')" [class.active]="activebutton=='yourfeed'"
+                [class.inactive]="activebutton=='globalfeed'">your feed</button>
+            <button id="globalfeed" (click)="toggle('globalfeed')" [class.active]="activebutton=='globalfeed'"
+                [class.inactive]="activebutton=='yourfeed'">global feed</button>
 
-        <div id="cards" class="cards">
-            
+            <div id="cards" class="cards" *ngFor="let card of cardarray" >
+                <div id="user">
+                    <div>{{card.authorName}}||{{card.date|date:'dd/MM/yyyy'}}</div>
+                    <div>{{card.likes}}</div>
+                </div>
+                <div id="title">
+                    {{card.title}}
+                </div>
+                <div id="description">
+                    {{card.description}}
+                </div>
+                <div id="tag">
+                    <div [routerLink]="['/article',card.cardId]">read more....</div>
+                    <div id="tagflex">
+                        <div *ngFor="let tag of card.tags"><span>{{tag}}</span></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+        <div>
 
+        </div>
     </div>
-    <div>
-
+    <div id="popular-tag">
+        <div>popular tag</div>
+     <div #populartag></div>
     </div>
 </div>

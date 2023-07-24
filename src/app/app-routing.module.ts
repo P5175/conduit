@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { EditorComponent } from './editor/editor.component';
 import { SettingComponent } from './setting/setting.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ArticleComponent } from './article/article.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:"register",component:RegisterComponent},
 {path:"editor",component:EditorComponent},
 {path:"setting",component:SettingComponent},
-{path:"profile",component:ProfileComponent}
+{path:"profile",component:ProfileComponent},
+{path:"article/:cardid",component:ArticleComponent}
 ];
 
 @NgModule({
