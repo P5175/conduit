@@ -1,7 +1,7 @@
 
 
 <div id="pform" class="pform">
-    <form [formGroup]="articleForm" (ngsubmit)="onSubmit()" id="form" class="form">
+    <form [formGroup]="articleForm"  id="form" class="form">
         <div id="ptitle" class="ptitle center">
             <label for="title">title</label>
             <input type="text" id="title" name="title" formControlName="title" />
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div id="button" class="button">
-            <button type="submit" [disabled]="!articleForm.valid" (click)="onSubmit()">submit</button>
+            <button type="submit" [disabled]="!articleForm.valid" (click)=" onSubmit()">submit</button>
         </div>
     </form>
 </div>

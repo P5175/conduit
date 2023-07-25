@@ -1,16 +1,49 @@
+
+
 button{
     margin:5px;
 }
-#yourfeed{
-background-color: white;
-border-top: none;
-border-left: none;
-border-right: none;
+#cards{
+    border-bottom: 1px solid black;
 }
 
-#globalfeed{
-    background-color: white;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+#user,#tag{
+    display: flex;
+    justify-content: space-between;
 }
+
+#tagflex{
+    display: flex;
+}
+#tagflex span{
+margin: 4px;
+}
+.active{
+  
+    background-color: greenyellow;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    
+}
+
+.inactive{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    background-color: white;
+}
+#body{
+    width: 80%;
+    margin: auto;
+    display: flex;
+  
+}
+#home{
+    flex-grow: 1;
+}
+#populartag{
+    flex-grow: 1;
+}
+

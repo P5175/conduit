@@ -1,7 +1,9 @@
 import { Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Card } from 'src/model/card.model';
+import { DataService } from 'src/services/data.service';
 
 @Component({
   selector: 'app-editor',
@@ -16,6 +18,7 @@ export class EditorComponent {
   cardId = 1;
   card: Card = {
     cardId: 0,
+    authorName:'',
     authorId: 0,
     title: '',
     description: '',
@@ -23,12 +26,14 @@ export class EditorComponent {
     date: '',
     likes: 0
   }
-  constructor(private formbuilder: FormBuilder) {
+  constructor(private formbuilder: FormBuilder,private dataservice:DataService,private router:Router) {
     this.articleForm = this.formbuilder.group({
       title: ["", [Validators.required]],
       description: ["", [Validators.required]],
       tags: [""]
-    })
+    });
+    this.dataservice.cardid$.subscribe(val=>this.cardId=val)
+
   };
 
   addtag(temp: string) {
@@ -42,10 +47,11 @@ tag.ondblclick=()=>this.removetag(tag);
     this.tagContainer.nativeElement.appendChild(tag);
   }
 removetag(tag:HTMLElement){
-const tagtext=tag.innerText;
-this.card.tags=this.card.tags.filter((t)=>t!==tagtext);
-// console.log(this.card.tags);
 tag.remove();
+
+
+console.log(this.card.tags);
+
 }
 
 
@@ -57,15 +63,30 @@ tag.remove();
     this.card.title = this.articleForm.value.title ?? "";
     this.card.description = this.articleForm.value.description ?? "";
     this.card.date = new Date().toISOString();
+    this.card.authorName=localStorage.getItem('username') ?? "";
+// console.log(this.card.authorName);'
+this.dataservice.onSubmitArticle(this.card);
+this.tagContainer.nativeElement.innerHTML="";
+this.articleForm.reset();
+this.card={
+  cardId: 0,
+  authorName:'',
+  authorId: 0,
+  title: '',
+  description: '',
+  tags: [],
+  date: '',
+  likes: 0
+}
     
     this.cardId++;
-    console.log(this.card);
-    
-  }
+this.dataservice.cardid$.next(this.cardId);
+this.router.navigateByUrl("");
+   }
 
   enter(event: any) {
     // console.log(event);
-    // event.preventdefault();
+    
     if (event.key === "Enter" && this.smalltag.trim() != "") {
       event.preventDefault();
       if (this.card.tags.includes(this.smalltag.trim())) {
@@ -84,11 +105,13 @@ tag.remove();
       event.preventDefault();
       this.articleForm.get('tags')?.reset();
     }
-    console.log(this.card.tags);
+    // console.log(this.card.tags);
 
-
-  }
+    const tag = document.createElement('span');
+   
+    
 
 
 }
 
+}
