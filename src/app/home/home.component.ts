@@ -44,6 +44,9 @@ this.activebutton=button;
 
     this.populartag=Array.from(tagmap.entries()).sort((a,b)=>b[1].count-a[1].count).map(([val])=>val).slice(0,5);
     console.log(this.populartag);
+    for(let i=0;i<this.populartag.length;i++){
+
+    }
   }
 
 

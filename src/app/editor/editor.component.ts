@@ -105,9 +105,11 @@ this.router.navigateByUrl("");
     }
     // console.log(this.card.tags);
 
-
-  }
+    const tag = document.createElement('span');
+   
+    
 
 
 }
 
+}
