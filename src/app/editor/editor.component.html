@@ -27,7 +27,7 @@
             </div>
         </div>
         <div id="button" class="button">
-            <button type="submit" [disabled]="!articleForm.valid">submit</button>
+            <button type="submit" [disabled]="!articleForm.valid" (click)="onSubmit()">submit</button>
         </div>
     </form>
 </div>

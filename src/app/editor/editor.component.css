@@ -82,6 +82,11 @@
      #form div label{
       text-align: justify;
      }
+     #ptags{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+     }
      #button{
         width: 100%;
      }

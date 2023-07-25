@@ -27,7 +27,7 @@ export class DataService {
     const user = this.users.find((u) => u.name === name && u.password === password);
     if (user) {
       this.isLogged.next(true);
-      localStorage.setItem('userid','user.userId')
+      localStorage.setItem('userid',user.userId.toString())
       return true;
     } else {
       return false;
