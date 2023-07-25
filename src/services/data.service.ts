@@ -33,12 +33,8 @@ cardarray$=new BehaviorSubject(this.cards);
     const user = this.users.find((u) => u.name === name && u.password === password);
     if (user) {
       this.isLogged.next(true);
-<<<<<<< HEAD
-      localStorage.setItem('userid',user.userId.toString())
-=======
       localStorage.setItem('userid',user.userId.toString());
       localStorage.setItem('username',user.name);
->>>>>>> 25ed608389ef1baac9549f7cb9d967486a8138df
       return true;
     } else {
       return false;
