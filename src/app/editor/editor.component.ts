@@ -56,6 +56,8 @@ console.log(this.card.tags);
 
 
   onSubmit() {
+    // console.log("called");
+    
     this.card.cardId = this.cardId;
     this.card.authorId = Number(localStorage.getItem('userid'));
     this.card.title = this.articleForm.value.title ?? "";
