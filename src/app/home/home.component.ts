@@ -11,7 +11,8 @@ export class HomeComponent implements OnInit{
   cardarray:Card[]=[];
   activebutton='globalfeed';
   populartag:string[]=[];
-  @ViewChild('tagContainer') popular_tag!: ElementRef<HTMLDivElement>;
+  
+  @ViewChild('popular_tag') popular_tag!: ElementRef<HTMLDivElement>;
  
 constructor(private dataservice:DataService){
 }
@@ -45,7 +46,11 @@ this.activebutton=button;
     this.populartag=Array.from(tagmap.entries()).sort((a,b)=>b[1].count-a[1].count).map(([val])=>val).slice(0,5);
     console.log(this.populartag);
     for(let i=0;i<this.populartag.length;i++){
-
+      const tag = document.createElement('span');
+      
+      
+          tag.innerText = this.popular_tag[i];
+          this.popular_tag.nativeElement.appendChild(tag);
     }
   }
 
