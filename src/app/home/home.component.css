@@ -41,9 +41,20 @@ margin: 4px;
   
 }
 #home{
-    flex-grow: 1;
-}
-#populartag{
-    flex-grow: 1;
+    flex-grow: 3;
+    padding: 15px;
 }
 
+.like-button{
+    border: none;
+    outline: none;
+    background: none;
+}
+#popular-tag{
+    flex-grow: 1;
+    padding: 15px;
+}
+
+.like-active{
+    background-color: rgb(0, 255, 0);
+}

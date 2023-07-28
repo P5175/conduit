@@ -9,7 +9,7 @@ import { DataService } from 'src/services/data.service';
   selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.css'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class EditorComponent {
   @ViewChild('tagContainer', { static: true }) tagContainer!: ElementRef<HTMLDivElement>;

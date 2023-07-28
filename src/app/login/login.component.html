@@ -1,3 +1,13 @@
-username<input type="text" #username>
-password<input type="text" #password>
-<button routerLink="/login" (click)="login()">login</button>
+<div class="login-box">
+    <div class="login-box-inner">
+        <div class="username-detail">
+            <label for="username">User Name</label>
+            <input type="text" #username class="username">
+        </div>
+        <div class="password-detail">
+            <label for="password">password</label>
+            <input type="text" #password class="password">
+        </div>
+        <div class="button"> <button routerLink="/login" (click)="login()">login</button></div>
+    </div>
+</div>

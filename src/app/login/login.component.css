@@ -1,0 +1,25 @@
+.login-box{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+   }
+
+ .username-detail,.password-detail{
+    display: flex;
+ }  
+
+ .username-detail label,.password-detail label{
+    flex: 50%;
+    margin: 5px;
+ }
+ .username-detail input,.password-detail input{
+    flex: 50%;
+    margin: 5px;
+ }
+ .button{
+    text-align: center;
+    margin: 5px;
+ }

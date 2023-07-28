@@ -1,0 +1,25 @@
+.register-box{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+   }
+
+ .username-detail,.password-detail,.email-detail{
+    display: flex;
+ }  
+
+ .username-detail label,.password-detail label,.email-detail label{
+    flex: 50%;
+    margin: 5px;
+ }
+ .username-detail input,.password-detail input,.email-detail input{
+    flex: 50%;
+    margin: 5px;
+ }
+ .button{
+    text-align: center;
+    margin: 5px;
+ }

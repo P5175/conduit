@@ -1,4 +1,19 @@
-username<input type="text" #username>
-email<input type="text" #email>
-password<input type="text" #password>
-<button routerLink="/login" (click)="register()">register</button>
+
+
+<div class="register-box">
+    <div class="register-box-inner">
+        <div class="username-detail">
+            <label for="username">User Name</label>
+            <input type="text" #username class="username">
+        </div>
+        <div class="email-detail">
+            <label for="email">email</label>
+            <input type="text" #email class="email">
+        </div>
+        <div class="password-detail">
+            <label for="password">password</label>
+            <input type="text" #password class="password">
+        </div>
+        <div class="button"> <button routerLink="/login" (click)="register()">register</button></div>
+    </div>
+</div>

@@ -10,13 +10,14 @@ export class DataService {
   constructor() { }
 
   private users: User[] = [];
+  // private activeUser:User=
   private cards:Card[]=[];
   private generateUserIds: number = 1;
   private isLogged = new BehaviorSubject<boolean>(false);
   islogged$ = this.isLogged.asObservable();
   cardid$=new BehaviorSubject(1);
 cardarray$=new BehaviorSubject(this.cards);
-
+users$=new BehaviorSubject(this.users);
 
 
   
@@ -45,6 +46,7 @@ cardarray$=new BehaviorSubject(this.cards);
     this.isLogged.next(false);
     localStorage.removeItem('userid');
     localStorage.removeItem('username');
+    
   }
    
   onSubmitArticle(card:Card){
