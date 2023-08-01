@@ -65,3 +65,13 @@ margin: 4px;
 .like-active{
     background-color: rgb(0, 255, 0);
 }
+.visible{
+    display: inline;
+    background-color: greenyellow;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+}
+.invisible{
+    display: none;
+}

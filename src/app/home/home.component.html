@@ -4,10 +4,11 @@
         <div>
             <div class="buttons">
                 <button id="yourfeed" (click)="toggle('yourfeed')" [class.active]="activebutton=='yourfeed'&&!activetag"
-                [class.inactive]="activebutton=='globalfeed'&&!activetag">your feed</button>
+                [class.inactive]="activebutton=='globalfeed' || activetag">your feed</button>
             <button id="globalfeed" (click)="toggle('globalfeed')" [class.active]="activebutton=='globalfeed'&&!activetag"
-                [class.inactive]="activebutton=='yourfeed'&&!activetag">global feed</button>
-            <button id="tagfeed" (click)="toggle('tagfeed')" [(ngModel)]="tag" >#{{tag}}</button>
+                [class.inactive]="activebutton=='yourfeed' || activetag">global feed</button>
+            <button id="tagfeed" (click)="toggle('tagfeed')" [class.visible]="activebutton=='tagfeed'"
+            [class.invisible]="activebutton!='tagfeed'" >#{{tag}}</button>
         </div>
 
 

@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.calculatepopulartag();
-    console.log(this.like_button);
-    console.log(this.popular_tag);
+    // console.log(this.like_button);
+    // console.log(this.popular_tag);
 
 
   }
@@ -40,7 +40,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   toggle(button: string) {
     
     this.activebutton = button;
-    
+    this.activetag=false;
+    this.visibleItems.items=this.cardarray;
 
   }
 
@@ -127,8 +128,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 tagClick(tag:string){
   this.visibleItems.items=this.cardarray.filter((card) => card.tags.includes(tag) );
   // console.log("tagclick"+this.visibleItems.items);
-  
-this.tag=tag;
+  this.activetag=true;
+  this.tag=tag
+this.activebutton='tagfeed';
   
 }
 
