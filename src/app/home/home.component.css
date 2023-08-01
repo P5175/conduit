@@ -5,8 +5,15 @@ button{
 }
 #cards{
     border-bottom: 1px solid black;
+   
 }
-
+.author-name{
+    font-size: 25px;
+}
+.fit-card{
+    height: 800px;
+    overflow-y:auto;
+}
 #user,#tag{
     display: flex;
     justify-content: space-between;

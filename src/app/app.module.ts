@@ -13,6 +13,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleComponent } from './article/article.component';
 
+import { PaginationComponent } from './pagination/pagination.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,8 @@ import { ArticleComponent } from './article/article.component';
     EditorComponent,
     SettingComponent,
     ProfileComponent,
-    ArticleComponent
+    ArticleComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
