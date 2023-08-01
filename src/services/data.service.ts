@@ -8,7 +8,7 @@ import { Card } from 'src/model/card.model';
 export class DataService {
 
   constructor() { }
-
+  
   private users: User[] = [];
   // private activeUser:User=
   private cards:Card[]=[];
