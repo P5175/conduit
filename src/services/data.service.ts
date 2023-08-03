@@ -15,7 +15,7 @@ export class DataService {
   private users: User[] = [];
   // private activeUser:User=
   private cards: Card[] = [];
-  private generateUserIds: number = 1;
+  // private generateUserIds: number = 1;
   private isLogged = new BehaviorSubject<boolean>(false);
   islogged$ = this.isLogged.asObservable();
   cardid$ = new BehaviorSubject(1);
@@ -27,21 +27,24 @@ export class DataService {
 
   registerUser(user: User) {
     // console.log(user);
+this.httpservice.post("http://localhost:3000/user",user).subscribe();
 
    
     
-    user.userId = this.generateUserIds;
-    this.users.push(user);
-    this.generateUserIds++;
+    // user.userId = this.generateUserIds;
+    // this.users.push(user);
+    // this.generateUserIds++;
     console.log(this.users);
 
   }
 
   loginUser(name: string, password: string): boolean {
+
+    this.httpservice.get<User[]>("http://localhost:3000/user").subscribe(user=>this.users=user)
     const user = this.users.find((u) => u.name === name && u.password === password);
     if (user) {
       this.isLogged.next(true);
-      localStorage.setItem('userid', user.userId.toString());
+      localStorage.setItem('userid', user.id.toString());
       localStorage.setItem('username', user.name);
       return true;
     } else {
@@ -77,8 +80,6 @@ export class DataService {
      console.log(this.cards);
      
   }
-  edit(id: number) {
-
-  }
+  
 
 }

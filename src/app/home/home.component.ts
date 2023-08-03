@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
   }
 
   toggleLike(id: number) {
-    const user = this.users.find((u) => u.userId.toString() == localStorage.getItem('userid'));
+    const user = this.users.find((u) => u.id.toString() == localStorage.getItem('userid'));
     const card = this.cardarray.find((c) => c.cardId == id);
     if (card) {
       if (user?.favoriteCardIds.includes(id)) {
