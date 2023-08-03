@@ -1,5 +1,5 @@
 import { HtmlParser } from '@angular/compiler';
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { Card } from 'src/model/card.model';
 import { User } from 'src/model/user.model';
 import { DataService } from 'src/services/data.service';
@@ -12,7 +12,7 @@ export interface PaginatedResponse<T> {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterContentInit {
   cardarray: Card[] = [];
   users: User[] = [];
   activebutton = 'globalfeed';
@@ -20,11 +20,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   tag:string="";
   activetag:boolean=false;
 
-  @ViewChild('popular_tag') popular_tag!: ElementRef<HTMLDivElement>;
+  // @ViewChild('popular_tag') popular_tag!: ElementRef<HTMLDivElement>;
   @ViewChildren('like_button') like_button!: QueryList<ElementRef<HTMLDivElement>>;
   constructor(private render: Renderer2, private dataservice: DataService) {
   }
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
     this.calculatepopulartag();
     // console.log(this.like_button);
     // console.log(this.popular_tag);
@@ -111,18 +111,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     this.populartag = Array.from(tagmap.entries()).sort((a, b) => b[1].totallikes - a[1].totallikes).map(([val]) => val).slice(0, 5);
     console.log(this.populartag);
-    for (let i = 0; i < this.populartag.length; i++) {
-      const tag = document.createElement('span');
-      tag.setAttribute('id', this.populartag[i]);
-     
-      this.render.listen(tag,'click',(event)=>{
-        this.tagClick(this.populartag[i]);
-      })
-
-
-      tag.innerText = this.populartag[i];
-      this.popular_tag.nativeElement!.appendChild(tag);
-    }
+   
   }
 
 tagClick(tag:string){
@@ -133,6 +122,9 @@ tagClick(tag:string){
 this.activebutton='tagfeed';
   
 }
+
+
+// pagination
 
   page: number = 1;
   pageSize: number = 10;

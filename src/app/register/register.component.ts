@@ -26,7 +26,6 @@ user:User={userId:0,name:'',email:'',password:'',followingIds:[],favoriteCardIds
     this.user.password=this.password.nativeElement.value;
     this.user.email=this.email.nativeElement.value;
     console.log(this.user);
-    
     this.dataservice.registerUser(this.user);
   }
 }

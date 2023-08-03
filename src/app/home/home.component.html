@@ -48,6 +48,8 @@
     </div>
     <div id="popular-tag">
         <div>popular tag</div>
-        <div #popular_tag></div>
+        <div class="popular-tags">
+            <span *ngFor="let tag of populartag" (click)="tagClick(tag)"> {{tag}}</span>
+        </div>
     </div>
 </div>

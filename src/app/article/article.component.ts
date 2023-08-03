@@ -55,7 +55,9 @@ this.dataservice.delete(id);
 this.router.navigate(["/"]);
  }
 edit(id:number){
+  this.router.navigateByUrl('editor/'+id);
 this.dataservice.edit(id);
+
 }
 
 }

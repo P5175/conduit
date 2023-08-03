@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { User } from 'src/model/user.model';
 import { BehaviorSubject, Subject } from "rxjs";
 import { Card } from 'src/model/card.model';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor() { }
+  // private userurl="http://localhost:3000/user";
+
+  constructor(private httpservice:HttpClient) { }
 
   private users: User[] = [];
   // private activeUser:User=
@@ -19,10 +22,14 @@ export class DataService {
   cardarray$ = new BehaviorSubject(this.cards);
   users$ = new BehaviorSubject(this.users);
 
-
+  currentid:number=0;
 
 
   registerUser(user: User) {
+    // console.log(user);
+
+   
+    
     user.userId = this.generateUserIds;
     this.users.push(user);
     this.generateUserIds++;
@@ -49,14 +56,24 @@ export class DataService {
 
   }
 
-  onSubmitArticle(card: Card) {
-    this.cards.push(card);
+  onSubmitArticle(card: Card,edit:boolean) {
+    console.log(edit);
+    console.log(card.cardId-1);
+    
+    if(edit){
+      this.cards[card.cardId-1]=card;
+    }
+    else{
+    
+    this.cards.push(card);}
+  
     this.cardarray$.next(this.cards);
     console.log(this.cards);
 
   }
   delete(id: number) {
      this.cards=this.cards.filter((card)=>card.cardId!=id);
+     this.cardarray$.next(this.cards);
      console.log(this.cards);
      
   }

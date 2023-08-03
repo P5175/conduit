@@ -31,7 +31,7 @@
     }
     #form div label{
         font-size: larger;
-     width: 30%;
+     width: 40%;
     margin-right: 5px;
      text-align: right;
     }
@@ -55,7 +55,7 @@
     margin-bottom: 10px;
     }
     
-    #divtag span{
+     .dtags span{
     
      display:flex;
      background-color: rgb(179, 174, 174);
@@ -72,7 +72,7 @@
     
     
     
-    @media only screen and (max-width: 995px) {
+    @media only screen and (max-width: 1071px) {
      #form div{
       display: flex;
      flex-direction: column;

@@ -1,22 +1,29 @@
 <div class="article-body">
-      <div class="article-banner">
+    <div class="article-banner">
         <div class="article-upper-container">
-             <div class="article-title">{{card.title}}</div>
-             <div class="article-buttons">
+            <div class="article-title">{{card.title}}</div>
+            <div class="article-buttons">
                 <div>
                     <span>{{card.authorName}}</span>
+                    <span>{{card.date|date:'dd/MM/yyyy'}}</span>
+                </div>
+                <button (click)="edit(card.cardId)">edit article</button>
+                <button (click)="delete(card.cardId)">delete article</button>
+            </div>
+        </div>
+    </div>
+    <div class="article-lower-container">
+        <div class="article-description-tag">
+            <div>{{card.description}}</div>
+            <div>
+<span *ngFor="let tag of card.tags">{{tag}}</span>
+            </div>
+        </div>
+        <div class="article-buttons">
+            <div>
+                <span>{{card.authorName}}</span>
                 <span>{{card.date|date:'dd/MM/yyyy'}}</span>
             </div>
-            <button (click)="edit(card.cardId)">edit article</button>
-            <button (click)="delete(card.cardId)">delete article</button>
-             </div>
+
         </div>
-      </div>
-      <div class="article-lower-container">
-            <div class="article-description-tag"></div>
-            <div class="article-buttons"><div>
-                <span>{{card.authorName}}</span>
-            <span>{{card.date|date:'dd/MM/yyyy'}}</span></div>
-            
-      </div>
-</div>
+    </div>

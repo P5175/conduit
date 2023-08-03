@@ -21,8 +21,11 @@
                             [(ngModel)]="smalltag" />
                     </div>
                     <div #tagContainer id="dtags" class="dtags"
-                        [ngStyle]="{ display: card.tags.length == 0 ? 'none' : 'flex' }"
-                        style="display: flex; flex-wrap: wrap"></div>
+                        [ngStyle]="{ display: spanTemp.length == 0 ? 'none' : 'flex' }"
+                        style="display: flex; flex-wrap: wrap">
+                    <span *ngFor="let item of spanTemp;let i =index" (dblclick)="removetag(i)">{{item}}</span>
+    
+                    </div>
                 </div>
             </div>
         </div>
