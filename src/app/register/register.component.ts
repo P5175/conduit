@@ -18,7 +18,7 @@ constructor(private dataservice:DataService){
 @ViewChild('username') username!:ElementRef;
 @ViewChild('email') email!:ElementRef;
 @ViewChild('password') password!:ElementRef;
-user:User={userId:0,name:'',email:'',password:'',followingIds:[],favoriteCardIds:[]}
+user:User={id:0,name:'',email:'',password:'',followingIds:[],favoriteCardIds:[]}
 
   register(){
   
