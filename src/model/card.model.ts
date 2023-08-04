@@ -1,5 +1,5 @@
 export interface Card{
-    cardId:number;
+    id:number;
     authorId:number;
     authorName:string;
     title:string;

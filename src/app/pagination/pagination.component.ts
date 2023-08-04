@@ -1,11 +1,19 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css']
 })
-export class PaginationComponent {
+export class PaginationComponent implements OnInit {
+  ngOnInit(): void {
+   
+    
+    this.updateTotalPages();
+    this.updateVisiblePages();
+  }
+  
+  
   @Input() total = 100;
   @Input() page = 1;
   @Input() pageSize = 10;
@@ -20,10 +28,7 @@ export class PaginationComponent {
   public visibleRangeLength:number=5;
   pageSizes: number[] = [5, 10, 25, 50];
 
-  ngOnInit(): void {
-    this.updateTotalPages();
-    this.updateVisiblePages();
-  }
+  
 
   public selectPage(page: number): void {
    this.page=page;
@@ -61,5 +66,6 @@ export class PaginationComponent {
 
   private updateTotalPages(): void {
     this.totalPages = Math.ceil(this.total / this.pageSize);
+    
   }
 }

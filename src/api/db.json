@@ -9,5 +9,31 @@
       "favoriteCardIds": []
     }
   ],
-  "card":[]
+  "card": [
+    {
+      "id": 1,
+      "authorName": "a",
+      "authorId": 1,
+      "title": "first title",
+      "description": "first description",
+      "tags": [
+        "first1",
+        "first2"
+      ],
+      "date": "2023-08-04T09:46:02.609Z",
+      "likes": 0
+    },
+    {
+      "id": 2,
+      "authorName": "a",
+      "authorId": 1,
+      "title": "second",
+      "description": "second",
+      "tags": [
+        "s1"
+      ],
+      "date": "2023-08-04T10:29:39.559Z",
+      "likes": 0
+    }
+  ]
 }

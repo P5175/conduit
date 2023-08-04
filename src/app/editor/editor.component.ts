@@ -16,11 +16,11 @@ export class EditorComponent implements OnInit {
   articleForm;
   smalltag = "";
   spanTemp: string[] = [];
-  cardId = 1;
+  // cardId = 1;
   routeid:number=0;
   edit:boolean=false;
   card: Card = {
-    cardId: 0,
+    id: 0,
     authorName: '',
     authorId: 0,
     title: '',
@@ -35,9 +35,12 @@ export class EditorComponent implements OnInit {
       description: ["", [Validators.required]],
       tags: [""]
     });
-    this.dataservice.cardid$.subscribe(val => this.cardId = val)
+    // this.dataservice.cardid$.subscribe(val => this.cardId = val)
 
-  }ngOnInit(): void {
+  }
+  
+  
+  ngOnInit(): void {
     this.activeroute.paramMap.subscribe(params=>{
       this.routeid=Number(params.get('cardid'));
       if(this.routeid){
@@ -68,9 +71,9 @@ export class EditorComponent implements OnInit {
     
 
    if(this.edit){
-    this.card.cardId = this.routeid;
+    this.card.id = this.routeid;
    }else{
-    this.card.cardId = this.cardId;
+    // this.card.id = this.cardId;
    }
     this.card.authorId = Number(localStorage.getItem('userid'));
     this.card.title = this.articleForm.value.title ?? "";
@@ -83,7 +86,7 @@ export class EditorComponent implements OnInit {
     // this.tagContainer.nativeElement.innerHTML = "";
     this.articleForm.reset();
     this.card = {
-      cardId: 0,
+      id: 0,
       authorName: '',
       authorId: 0,
       title: '',
@@ -93,11 +96,8 @@ export class EditorComponent implements OnInit {
       likes: 0
     }
    this.spanTemp=[];
-   if(!this.edit){
-    this.cardId++;
-    
-   }
-   this.dataservice.cardid$.next(this.cardId);
+   
+  //  this.dataservice.cardid$.next(this.cardId);
     this.router.navigateByUrl("");
   }
 

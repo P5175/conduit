@@ -11,9 +11,9 @@ import { DataService } from 'src/services/data.service';
 })
 export class ArticleComponent implements OnInit {
 
-  cardId!:string;
+  id!:string;
   card:Card={
-    cardId: 0,
+    id: 0,
     authorName:'',
     authorId: 0,
     title: '',
@@ -29,12 +29,14 @@ constructor(private route:ActivatedRoute,private dataservice:DataService,private
 }
   ngOnInit(): void {
   this.route.paramMap.subscribe(params=>{
-    this.cardId=params.get("cardid") ?? Number(0).toString();
-    // console.log(this.cardId);
+    this.id=params.get("cardid") ?? Number(0).toString();
+    console.log(this.id);
     
     this.dataservice.cardarray$.subscribe(val=>this.cardarray=val);
-  this.card=this.cardarray.find(card=>card.cardId==Number(this.cardId)) ?? {
-    cardId: 0,
+    console.log(this.cardarray);
+    
+  this.card=this.cardarray.find(card=>card.id==Number(this.id)) ?? {
+    id: 0,
     authorName:'',
     authorId: 0,
     title: '',
@@ -55,6 +57,8 @@ this.dataservice.delete(id);
 this.router.navigate(["/"]);
  }
 edit(id:number){
+  // console.log(id);
+  
   this.router.navigateByUrl('editor/'+id);
 
 

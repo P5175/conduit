@@ -12,31 +12,49 @@ export interface PaginatedResponse<T> {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterContentInit {
+export class HomeComponent implements OnInit {
   cardarray: Card[] = [];
   users: User[] = [];
   activebutton = 'globalfeed';
   populartag: string[] = [];
   tag:string="";
   activetag:boolean=false;
+  page:number=1;
+  pageSize:number=10;
+  public visibleItems: PaginatedResponse<number> = {
+    items: this.cardarray.slice(0, 10),
+    total: this.cardarray.length
+  };
+  
 
-  // @ViewChild('popular_tag') popular_tag!: ElementRef<HTMLDivElement>;
   @ViewChildren('like_button') like_button!: QueryList<ElementRef<HTMLDivElement>>;
   constructor(private render: Renderer2, private dataservice: DataService) {
   }
-  ngAfterContentInit(): void {
-    this.calculatepopulartag();
-    // console.log(this.like_button);
-    // console.log(this.popular_tag);
 
 
-  }
+ 
+
   ngOnInit(): void {
-    this.dataservice.cardarray$.subscribe(val => this.cardarray = val);
-    this.dataservice.users$.subscribe(val => this.users = val);
-    this.onPageChange();
+    
+    
+    this.dataservice.loadCard().subscribe(val=>{
+      this.cardarray=val;
+      this.dataservice.cardarray$.next(this.cardarray);
+      this.page=1;
+      this.pageSize=10;
+     
+      this.visibleItems.items=this.cardarray.slice(0,10);
+      this.visibleItems.total=this.cardarray.length;
+      
+      
+     
+      
+      this.onPageChange();
+      this.calculatepopulartag();
+   
+    })
   }
-
+  
   toggle(button: string) {
     
     this.activebutton = button;
@@ -47,7 +65,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
 
   toggleLike(id: number) {
     const user = this.users.find((u) => u.id.toString() == localStorage.getItem('userid'));
-    const card = this.cardarray.find((c) => c.cardId == id);
+    const card = this.cardarray.find((c) => c.id == id);
     if (card) {
       if (user?.favoriteCardIds.includes(id)) {
 
@@ -93,6 +111,8 @@ export class HomeComponent implements OnInit, AfterContentInit {
     })
     return cardelement ? cardelement.nativeElement : null;
   }
+
+
   calculatepopulartag() {
     const tagmap = new Map<string, { count: number, totallikes: number }>();
     for (const card of this.cardarray) {
@@ -114,6 +134,8 @@ export class HomeComponent implements OnInit, AfterContentInit {
    
   }
 
+
+
 tagClick(tag:string){
   this.visibleItems.items=this.cardarray.filter((card) => card.tags.includes(tag) );
   // console.log("tagclick"+this.visibleItems.items);
@@ -124,16 +146,12 @@ this.activebutton='tagfeed';
 }
 
 
-// pagination
+// pagination part 
 
-  page: number = 1;
-  pageSize: number = 10;
+ 
 
 
-  public visibleItems: PaginatedResponse<number> = {
-    items: this.cardarray.slice(0, 10),
-    total: this.cardarray.length,
-  };
+  
   pageemit(event: any) {
     this.page = event;
     this.onPageChange();
@@ -153,6 +171,9 @@ this.activebutton='tagfeed';
 
 
     this.visibleItems = { items, total: this.cardarray.length };
+   
+    
+    
   }
 
 

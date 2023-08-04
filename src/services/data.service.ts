@@ -18,11 +18,17 @@ export class DataService {
   // private generateUserIds: number = 1;
   private isLogged = new BehaviorSubject<boolean>(false);
   islogged$ = this.isLogged.asObservable();
-  cardid$ = new BehaviorSubject(1);
+  // cardid$ = new BehaviorSubject(1);
   cardarray$ = new BehaviorSubject(this.cards);
   users$ = new BehaviorSubject(this.users);
 
-  currentid:number=0;
+  
+  loadCard(){
+   return this.httpservice.get<Card[]>("http://localhost:3000/card");
+   
+    
+   
+  }
 
 
   registerUser(user: User) {
@@ -31,9 +37,7 @@ this.httpservice.post("http://localhost:3000/user",user).subscribe();
 
    
     
-    // user.userId = this.generateUserIds;
-    // this.users.push(user);
-    // this.generateUserIds++;
+   
     console.log(this.users);
 
   }
@@ -60,22 +64,21 @@ this.httpservice.post("http://localhost:3000/user",user).subscribe();
   }
 
   onSubmitArticle(card: Card,edit:boolean) {
-    console.log(edit);
-    console.log(card.cardId-1);
     
     if(edit){
-      this.cards[card.cardId-1]=card;
+      this.httpservice.put("http://localhost:3000/card/card.id",card).subscribe();
     }
     else{
     
-    this.cards.push(card);}
+      this.httpservice.post("http://localhost:3000/card",card).subscribe();
+    }
   
     this.cardarray$.next(this.cards);
     console.log(this.cards);
 
   }
   delete(id: number) {
-     this.cards=this.cards.filter((card)=>card.cardId!=id);
+     this.cards=this.cards.filter((card)=>card.id!=id);
      this.cardarray$.next(this.cards);
      console.log(this.cards);
      

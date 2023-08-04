@@ -14,11 +14,11 @@
 
 
             <div class="fit-card">
-                <div id="card{{card.cardId}}" class="cards" *ngFor="let card of visibleItems.items">
+                <div id="card{{card.id}}" class="cards" *ngFor="let card of visibleItems.items">
                     <div id="user">
                         <div class="author-name">{{card.authorName}}||{{card.date|date:'dd/MM/yyyy'}}</div>
-                        <div class="like-div"><button #like_button class="like-button" (click)="toggleLike(card.cardId)"
-                                [attr.data-card-id]="card.cardId"><span>likes</span><span>{{card.likes}}</span></button>
+                        <div class="like-div"><button #like_button class="like-button" (click)="toggleLike(card.id)"
+                                [attr.data-card-id]="card.id"><span>likes</span><span>{{card.likes}}</span></button>
                         </div>
                     </div>
                     <div id="title">
@@ -28,7 +28,7 @@
                         {{card.description}}
                     </div>
                     <div id="tag">
-                        <div [routerLink]="['/article',card.cardId]" style="cursor: pointer;">read more....</div>
+                        <div [routerLink]="['/article',card.id]" style="cursor: pointer;">read more....</div>
                         <div id="tagflex">
                             <div *ngFor="let tag of card.tags"><span>{{tag}}</span></div>
                         </div>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="pagination-wrapper">
-                <app-pagination [page]="page" [pageSize]="pageSize" [total]="visibleItems.total"
+                <app-pagination *ngIf="visibleItems.total>0" [page]="page" [pageSize]="pageSize" [total]="visibleItems.total"
                     (pageemit)="pageemit($event)" (pagesizeemit)="pagesizeemit($event)"></app-pagination>
 
 
